@@ -6,6 +6,8 @@ Introduction
 
 This gem is the Ruby implementation of the e-commerce payment gateway Paybox System from [Paybox](http://www.paybox.com).
 
+This gem is unofficial and is not approved or endorsed by Paybox System.
+
 Please note that Paybox provides several solutions. Depending of the solution you have chosen, you must use different implementations.
 
 In my humble opinion :
@@ -28,9 +30,7 @@ Paybox System Basics
 
 I recommend you to read the Paybox System manual. Please contact Paybox and ask them the PDF manual for "Paybox System without CGI".
 
-The manual explains you in details how the system works.
-
-Basically you have to create a HTML form containing some hidden fields. Those fields contains the paramaters you have to send to Paybox like your identification, the amount of the transaction, etc.
+Basically you have to create a HTML form containing some hidden fields. Those fields contains the parameters you have to send to Paybox like your identification, the amount of the transaction, etc.
 
 The last field contains a cryptographic signature. This signature has to be generated from all the previous fields using a secret key. You can generate the secret key in the administration interface provided by Paybox.
 
@@ -63,13 +63,12 @@ Building the Paybox parameters
 ------------------------------
 
 Check the manual for the complete list of all the different parameters you need to send to Paybox.
-All these parameters are upper-case and begin by PBX, like : PBX_SITE.
-Use the `Paybox::System::Base.hash_form_fields_from` with a hash that contains all the paybox parameters in symbols without "PBX_", for example :
+All these parameters are upper-case and begin by `PBX_`, like : `PBX_SITE`.
+Use the `Paybox::System::Base.hash_form_fields_from` with a hash that contains all the paybox parameters in symbols without `PBX_`, for example :
 
-     Paybox::System::Base.hash_form_fields_from(site => "XYZ")
+     Paybox::System::Base.hash_form_fields_from(:site => "XYZ") # => returns { "PBX_SITE" => "XYZ", etc. }
 
-will return a Hash containing "PBX_SITE" => "XYZ".
-The returning Hash also contains 3 additional keys : PBX_HASH that is always "SHA512", PBX_TIME with the current timestamp (so you don't have to calculate it yourself) and more important, it contains the signature in PBX_HMAC based on all the parameters and the secret key.
+The returning Hash also contains 3 additional keys : `PBX_HASH` that is always `SHA512`, `PBX_TIME` with the current timestamp (so you don't have to calculate it yourself) and more important, it contains the signature in `PBX_HMAC` based on all the previous parameters and the secret key.
 
 Real example with the Paybox test parameters :
 
@@ -107,11 +106,13 @@ For example :
     => The parameters string is : "amount=1500&error=00000&reference=id123456"
     => The signature string is : "ABCDEFGH123456"
 
+    => Paybox::System::Base.check_response?("amount=1500&error=00000&reference=id123456", "ABCDEFGH123456")
+
 Rails helpers
 -------------
 
 If you use Rails 3, you don't have to directly use the Base methods.
-This gem provides a helper class that contains a view helper to generate the form and a before_filter to use in controllers to check the integrity of the Paybox response.
+This gem provides a helper class that contains a view helper to generate the form and a before\_filter to use in controllers to check the integrity of the Paybox response.
 
 Create an initializer `config/initializers/paybox_system.rb`:
 
@@ -120,7 +121,7 @@ Create an initializer `config/initializers/paybox_system.rb`:
 
 In the view Helper you want to create a paybox form, add:
 
-  include Paybox::System::Rails::Helpers
+    include Paybox::System::Rails::Helpers
 
 
 Then use the `paybox_hidden_fields` helper with the same Hash you may use with the `hash_form_fields_from` method (bellow).
@@ -131,9 +132,9 @@ Example of the view:
           <%= paybox_hidden_fields :site => "ABCDEFG", :rang => "01" # , ... See bellow for the Hash you have to create %>
         </form>
 
-IMPORTANT! I recommend you to create the form HTML tags in pure HTML and not use form_tag or form_for Rails helpers as Paybox will not like the additional fields that Rails adds with these helpers.
+IMPORTANT! I recommend you to create the form HTML tags in pure HTML and not use form\_tag or form\_for Rails helpers as Paybox will not like the additional fields that Rails adds with these helpers.
 
-In the controller(s) that contains the action(s) called by Paybox (for example : when a payment is made (IPN) or canceled), to check the integrity of the response, use the `check_paybox_integrity!` before_filter provided by the module `Paybox::System::Rails::Integrity`.
+In the controller(s) that contains the action(s) called by Paybox (for example : when a payment is made (IPN) or canceled), to check the integrity of the response, use the `check_paybox_integrity!` before\_filter provided by the module `Paybox::System::Rails::Integrity`.
 
     class PurchasedProductsController < ApplicationController
       include Paybox::System::Rails::Integrity
@@ -150,9 +151,10 @@ In the controller(s) that contains the action(s) called by Paybox (for example :
       end
     end
 
-IMPORTANT! To use the check_paybox_integrity! before_filter you have to tell Paybox to append the signature in a parameter called "sign".
-So the PBX_RETOUR paramater (:retour key in the Hash) must finish by : sign:K.
-See the official manual for more information on the PBX_RETOUR variable.
+IMPORTANT! To use the `check_paybox_integrity!` before\_filter you have to tell Paybox to append the signature in a parameter called `sign`.
+
+So the `PBX_RETOUR` parameter (`:retour` key in the Hash) must finish by : `sign:K`.
+See the official manual for more information on the `PBX_RETOUR` variable.
 For example, you may use : `:retour => "amount:M;reference:R;autorization:A;error:E;sign:K"` in the form fields generation method.
 
 Contributing to Paybox System for Ruby
