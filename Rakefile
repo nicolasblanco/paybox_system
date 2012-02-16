@@ -17,10 +17,10 @@ Jeweler::Tasks.new do |gem|
   gem.name = "paybox_system"
   gem.homepage = "http://github.com/slainer68/paybox_system"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Paybox System e-commerce gateway Ruby implementation}
+  gem.description = %Q{Paybox System e-commerce gateway Ruby implementation}
   gem.email = "slainer68@gmail.com"
-  gem.authors = ["slainer68"]
+  gem.authors = ["Nicolas Blanco"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
