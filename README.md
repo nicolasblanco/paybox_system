@@ -171,6 +171,4 @@ Contributing to Paybox System for Ruby
 Copyright
 ---------
 
-Copyright (c) 2012 Nicolas Blanco & Keley Consulting. See LICENSE.txt for
-further details.
-
+Copyright (c) 2012 Nicolas Blanco & Keley Consulting. See LICENSE.txt for further details.
