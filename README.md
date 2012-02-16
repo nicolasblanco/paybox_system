@@ -1,6 +1,8 @@
 Paybox System for Ruby
 ======================
 
+[![Build Status](https://secure.travis-ci.org/slainer68/paybox_system.png?branch=master)](http://travis-ci.org/slainer68/paybox_system)
+
 Introduction
 ------------
 
