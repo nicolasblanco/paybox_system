@@ -19,7 +19,7 @@ module Paybox
       def self.hash_form_fields_from(options = {})
         raise StandardError, "missing :secret_key in config Hash" unless @@config[:secret_key]
 
-        formatted_options = Hash[options.map { |k, v| ["PBX_#{k.upcase}", v] }]
+        formatted_options = Hash[options.map { |k, v| ["PBX_#{k.to_s.upcase}", v] }]
         formatted_options["PBX_HASH"] = "SHA512"
 
         date_iso = Time.now.iso8601
