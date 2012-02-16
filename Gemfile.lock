@@ -26,7 +26,6 @@ GEM
       multi_json (~> 1.0.3)
       simplecov-html (~> 0.5.3)
     simplecov-html (0.5.3)
-    timecop (0.3.5)
 
 PLATFORMS
   ruby
@@ -38,4 +37,3 @@ DEPENDENCIES
   rdoc (~> 3.12)
   rspec (~> 2.8.0)
   simplecov
-  timecop (~> 0.3.5)

@@ -26,14 +26,13 @@ describe "Paybox::System::Base" do
       end
 
       it "should return a formatted hash of Paybox fields" do
-        Timecop.freeze(2010, 10, 10, 10, 10, 10) do
-          h = subject.hash_form_fields_from({ :aaa => "aaa", :bbb => "bbb", :ccc => "ccc" })
-          h.should be_a(Hash)
-          h.keys.should include("PBX_AAA", "PBX_BBB", "PBX_CCC", "PBX_HASH", "PBX_TIME", "PBX_HMAC")
+        OpenSSL::HMAC.should_receive(:hexdigest).and_return("abcdefg")
+        h = subject.hash_form_fields_from({ :aaa => "aaa", :bbb => "bbb", :ccc => "ccc" })
+        h.should be_a(Hash)
+        h.keys.should include("PBX_AAA", "PBX_BBB", "PBX_CCC", "PBX_HASH", "PBX_TIME", "PBX_HMAC")
 
-          h["PBX_HASH"].should == "SHA512"
-          h["PBX_HMAC"].should == "476E24F58F18962A3A68CBCF02BA1C78862B9441D4B1CF74AE7A6A505A8B62E96DB1EF9761A880EBFA706938B239BF231110EB0AA93DD6F97818C73D80E01BD4"
-        end
+        h["PBX_HASH"].should == "SHA512"
+        h["PBX_HMAC"].should == "ABCDEFG"
       end
     end
   end

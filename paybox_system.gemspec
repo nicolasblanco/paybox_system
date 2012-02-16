@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "docs/pubkey.pem",
     "lib/paybox_system.rb",
     "lib/paybox_system/rails/helpers.rb",
+    "paybox_system.gemspec",
     "spec/paybox_system_spec.rb",
     "spec/spec_helper.rb"
   ]
@@ -45,7 +46,6 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0"])
-      s.add_development_dependency(%q<timecop>, ["~> 0.3.5"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
     else
@@ -53,7 +53,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, ["~> 1.0"])
-      s.add_dependency(%q<timecop>, ["~> 0.3.5"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_dependency(%q<simplecov>, [">= 0"])
     end
@@ -62,7 +61,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rspec>, ["~> 2.8.0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
     s.add_dependency(%q<bundler>, ["~> 1.0"])
-    s.add_dependency(%q<timecop>, ["~> 0.3.5"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
     s.add_dependency(%q<simplecov>, [">= 0"])
   end
