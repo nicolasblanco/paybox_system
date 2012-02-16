@@ -74,7 +74,7 @@ The returning Hash also contains 3 additional keys : `PBX_HASH` that is always `
 
 Real example with the Paybox test parameters :
 
-    Paybox::System::Base.hash_form_fields_from(:site => "1999888", :rang: "32", :identifiant: "107904482",
+    Paybox::System::Base.hash_form_fields_from(:site => "1999888", :rang => "32", :identifiant => "107904482",
                                                :paybox => "https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi",
                                                :backup1 => "https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi",
                                                :backup2 => "https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi",
