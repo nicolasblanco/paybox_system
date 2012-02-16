@@ -8,7 +8,7 @@ Introduction
 
 This gem is the Ruby implementation of the e-commerce payment gateway Paybox System from [Paybox](http://www.paybox.com).
 
-This gem is unofficial and is not approved or endorsed by Paybox System.
+This gem is unofficial and is not approved or endorsed by Paybox.
 
 Please note that Paybox provides several solutions. Depending of the solution you have chosen, you must use different implementations.
 
