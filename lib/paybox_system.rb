@@ -22,7 +22,7 @@ module Paybox
         formatted_options = Hash[options.map { |k, v| ["PBX_#{k.to_s.upcase}", v] }]
         formatted_options["PBX_HASH"] = "SHA512"
 
-        date_iso = Time.now.iso8601
+        date_iso = Time.now.utc.iso8601
         formatted_options["PBX_TIME"] = date_iso
 
         base_params_query = formatted_options.to_a.map { |a| a.join("=") }.join("&")
