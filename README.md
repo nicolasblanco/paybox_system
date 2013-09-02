@@ -119,7 +119,7 @@ This gem provides a helper class that contains a view helper to generate the for
 Create an initializer `config/initializers/paybox_system.rb`:
 
     require "paybox_system/rails/helpers"
-    Paybox::System::Base.config = { secret_key => "YOUR_SECRET_KEY" } # I recommend you to load the key depending of the environment! Connect to the Paybox administration interface to generate the key (see the manual)
+    Paybox::System::Base.config = { :secret_key => "YOUR_SECRET_KEY" } # I recommend you to load the key depending of the environment! Connect to the Paybox administration interface to generate the key (see the manual)
 
 In the view Helper you want to create a paybox form, add:
 
